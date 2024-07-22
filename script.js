@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Smooth scroll for anchor links
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
+        anchor.addEventListener("click", function(e) {
             e.preventDefault();
             const targetId = this.getAttribute("href").substring(1);
             const targetElement = document.getElementById(targetId);
@@ -40,6 +40,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
             }
         });
+    });
+
+    // Music control
+    let playCounter = 0;
+    const musicControlBtn = document.getElementById("music-control-btn");
+    const backgroundMusic = document.getElementById("background-music");
+
+    musicControlBtn.addEventListener("click", () => {
+        playCounter++;
+        if (playCounter % 2 !== 0) {
+            backgroundMusic.play();
+            musicControlBtn.textContent = "Pause Music";
+        } else {
+            backgroundMusic.pause();
+            musicControlBtn.textContent = "Play Music";
+        }
     });
 
     // Form submission
@@ -78,8 +94,8 @@ document.addEventListener("DOMContentLoaded", function() {
         setInterval(() => {
             currentIndex = (currentIndex + 1) % colors.length;
             document.body.style.background = `linear-gradient(45deg, ${colors[currentIndex]}, ${colors[(currentIndex + 1) % colors.length]})`;
-        }, 5000); // Change color every 5 seconds
+        }, 3000);
     }
-
+    
     animateBackground();
 });
